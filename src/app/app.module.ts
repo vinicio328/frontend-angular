@@ -22,6 +22,7 @@ import { AppComponent } from './app.component';
 import 'hammerjs';
 import { MenuComponent } from './menu/menu.component';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { DishService } from './service/dish.service';
 import { LeaderService } from './service/leader.service';
@@ -50,6 +51,7 @@ import { LoginComponent } from './login/login.component';
 		BrowserAnimationsModule,
 		MatToolbarModule,
 		FlexLayoutModule,
+		MatProgressSpinnerModule,
 		MatListModule,
 		MatGridListModule,
 		MatCardModule,
