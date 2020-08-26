@@ -8,24 +8,25 @@ import { Location } from '@angular/common';
 
 
 @Component({
-  selector: 'app-dishdetail',
-  templateUrl: './dishdetail.component.html',
-  styleUrls: ['./dishdetail.component.scss']
+	selector: 'app-dishdetail',
+	templateUrl: './dishdetail.component.html',
+	styleUrls: ['./dishdetail.component.scss']
 })
 export class DishdetailComponent implements OnInit {
-  dish: Dish;
+	dish: Dish;
 
-  constructor(private dishservice: DishService,
-    private route: ActivatedRoute,
-    private location: Location) { }
+	constructor(private dishservice: DishService,
+		private route: ActivatedRoute,
+		private location: Location) { }
 
-  ngOnInit() {
-    const id = +this.route.snapshot.params['id'];
-    this.dishservice.getDish(id.toString())
-      .then(dish => this.dish = dish);
-  }
+	ngOnInit() {
+		const id = +this.route.snapshot.params['id'];
+		this.dishservice.getDish(id)
+			.subscribe(dish => this.dish = dish);
+		console.log(this.dish);
+	}
 
-  goBack(): void {
-    this.location.back();
-  }
+	goBack(): void {
+		this.location.back();
+	}
 }
