@@ -65,7 +65,7 @@ export class DishdetailComponent implements OnInit {
 
 	onSubmit() {
 		this.tempComment = this.commentForm.value;
-		this.tempComment.date = Date.now().toString();
+		this.tempComment.date = new Date().toISOString();
 		console.log(this.tempComment);
 		this.commentForm.reset({
 			author: '',

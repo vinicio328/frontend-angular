@@ -36,8 +36,8 @@ fxLayoutGap.xs="0">
 </div>
 
 
-<div fxFlex="40"> 
-	<mat-list fxFlex *ngIf="dish">
+<div fxFlex="40" fxLayout="column"> 
+	<mat-list fxFlex="100" *ngIf="dish">
 		<mat-header>
 			<h3>Comments</h3>
 		</mat-header>
@@ -48,15 +48,19 @@ fxLayoutGap.xs="0">
 			<p matLine>
 				<span> -- {{comment.author}} {{comment.date | date}} </span>
 			</p>
-		</mat-list-item>
-		<mat-list-item *ngIf="commentForm.status == 'VALID'">
+		</mat-list-item>		
+	</mat-list>
+	
+	<mat-list fxFlex>
+		
+		<mat-list-item *ngIf="commentForm.valid">
 			<h1 matLine> {{commentForm.value.comment}} </h1>
 			<p matLine> {{commentForm.value.rating}} </p>
 			<p matLine>
 				<span> -- {{commentForm.value.author}}</span>
 			</p>
 		</mat-list-item>
-		
+
 		<mat-footer>
 			<div fxFlex="100" class="form-size">
 			<form novalidate [formGroup]="commentForm" #fform="ngForm" (ngSubmit)="onSubmit()">
@@ -81,6 +85,5 @@ fxLayoutGap.xs="0">
 		</mat-footer>
 	</mat-list>
 </div>
-
 
 </div>
