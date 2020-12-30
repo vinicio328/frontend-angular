@@ -30,6 +30,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DishService } from './service/dish.service';
 import { LeaderService } from './service/leader.service';
 import { PromotionService } from './service/promotion.service';
+import { ProcessHTTPMsgService } from './service/process-httpmsg.service';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -76,6 +77,7 @@ import { LoginComponent } from './login/login.component';
 		DishService,
 		PromotionService,
 		LeaderService,
+		ProcessHTTPMsgService,
 		{provide: 'BaseURL', useValue: baseURL}
 	],
 	entryComponents: [
