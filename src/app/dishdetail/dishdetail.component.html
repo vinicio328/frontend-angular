@@ -14,7 +14,7 @@ fxLayoutGap.xs="0">
 					<h3>{{dish.name | uppercase}}</h3>
 				</mat-card-title>
 			</mat-card-header>
-			<img mat-card-image src={{dish.image}} alt={{dish.name}}>
+			<img mat-card-image src="{{ baseURL + dish.image }}" alt={{dish.name}}>
 			<mat-card-content>
 				<p>{{dish.description}}
 				</p>
@@ -61,7 +61,7 @@ fxLayoutGap.xs="0">
 			</p>
 		</mat-list-item>
 
-		<mat-footer>
+		
 			<div fxFlex="100" class="form-size">
 			<form novalidate [formGroup]="commentForm" #fform="ngForm" (ngSubmit)="onSubmit()">
 				<p>
@@ -82,7 +82,6 @@ fxLayoutGap.xs="0">
 				<button type="submit" mat-button class="background-primary text-floral-white" [disabled]="commentForm.invalid" >Submit</button>
 			</form>
 			</div>
-		</mat-footer>
 	</mat-list>
 </div>
 
