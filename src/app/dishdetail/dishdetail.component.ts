@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, ViewChild, Inject } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Dish } from '../shared/dish';
 import { Comment } from '../shared/comment';
@@ -10,24 +9,22 @@ import { switchMap } from 'rxjs/operators';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
+import { visibility, flyInOut, expand } from '../animations/app.animation';
 
 @Component({
 	selector: 'app-dishdetail',
 	templateUrl: './dishdetail.component.html',
 	styleUrls: ['./dishdetail.component.scss'],
+	// tslint:disable-next-line:use-host-property-decorator
+	host: {
+		'[@flyInOut]': 'true',
+		'style': 'display: block;'
+	},
 	animations: [
-	    trigger('visibility', [
-	        state('shown', style({
-	            transform: 'scale(1.0)',
-	            opacity: 1
-	        })),
-	        state('hidden', style({
-	            transform: 'scale(0.5)',
-	            opacity: 0
-	        })),
-	        transition('* => *', animate('0.5s ease-in-out'))
-	    ])
-	  ]
+		flyInOut(),
+		visibility(),
+		expand()
+	]
 })
 export class DishdetailComponent implements OnInit {
 
@@ -91,12 +88,12 @@ export class DishdetailComponent implements OnInit {
 
 		this.dishcopy.comments.push(this.tempComment);
 		this.dishservice.putDish(this.dishcopy)
-			.subscribe(dish => {
-				this.dish = dish; this.dishcopy = dish;
-			}, 
-			errmess => {
-				this.dish = null; this.dishcopy = null; this.errMess = <any>errmess;
-			});
+		.subscribe(dish => {
+			this.dish = dish; this.dishcopy = dish;
+		}, 
+		errmess => {
+			this.dish = null; this.dishcopy = null; this.errMess = <any>errmess;
+		});
 	}
 
 
@@ -125,7 +122,7 @@ export class DishdetailComponent implements OnInit {
 		this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
 		this.route.params.pipe(switchMap((params: Params) => { this.visibility = 'hidden'; return this.dishservice.getDish(+params['id']); }))
 		.subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); this.visibility = 'shown'; },
-		  errmess => this.errMess = <any>errmess);
+			errmess => this.errMess = <any>errmess);
 	}
 
 	setPrevNext(dishId: number) {
